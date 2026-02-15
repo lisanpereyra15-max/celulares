@@ -1,0 +1,350 @@
+index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyphones - Accesorios y Soluciones</title>
+    
+    <style>
+        /* --- Variables de Color --- */
+        :root {
+            --azul-oscuro: #004785; /* Tomado del logo */
+            --azul-claro: #0066b2;
+            --blanco: #ffffff;
+            --fondo-gris: #f5f5f7; /* Gris típico de Apple */
+            --texto-oscuro: #1d1d1f;
+        }
+
+        /* --- Reseteo Básico --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-gris);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header y Menú --- */
+        header {
+            background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--azul-claro) 100%);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        nav.category-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav.category-menu a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav.category-menu a:hover {
+            color: var(--blanco);
+        }
+
+        nav.category-menu a.active {
+            color: var(--blanco);
+            border-bottom: 2px solid var(--blanco);
+            font-weight: bold;
+        }
+
+        /* --- Sección Hero --- */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #003366 100%);
+            color: var(--blanco);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-btn {
+            background-color: var(--blanco);
+            color: var(--azul-oscuro);
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- Productos --- */
+        .products {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .products h2 {
+            font-size: 2.2rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            /* Ajusté el tamaño mínimo para que entren bien las 4 tarjetas */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--blanco);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            height: 100%; /* Para que todas las tarjetas midan lo mismo */
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--azul-oscuro);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- Servicio Técnico --- */
+        .services {
+            background-color: var(--blanco);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .services h2 {
+            color: var(--azul-oscuro);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .service-content {
+            max-width: 700px;
+            margin: 0 auto 40px; /* Margen inferior para separar de las fotos */
+            font-size: 1.2rem;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+        }
+
+        /* --- Galería de Fotos de Reparación --- */
+        .repair-gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gallery-img-box {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background-color: #eee; /* Fondo gris temporal */
+            aspect-ratio: 4 / 3; /* Proporción rectangular */
+        }
+
+        .gallery-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-img-box:hover img {
+            transform: scale(1.05); /* Pequeño zoom al pasar el mouse */
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #001a33;
+            color: var(--blanco);
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+        }
+        
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+            nav.category-menu ul {
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .repair-gallery {
+                flex-direction: column; /* Las fotos se ponen una abajo de la otra en el celu */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="lo.jpg" alt="Logo Skyphones">
+            </a>
+        </div>
+        <nav class="category-menu">
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                
+                <li><a href="celulares.html">Celulares</a></li>
+                <li><a href="fundas.html">Fundas</a></li>
+                <li><a href="cargadores.html">Cargadores</a></li>
+                <li><a href="accesorios.html">Accesorios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Servicio técnico y venta de productos Apple </h1>
+            <p>Accesorios, fundas y soluciones integrales para tus dispositivos.</p>
+            <div class="badges">
+                <span class="badge">📍 Córdoba Capital - Malvinas Arg</span>
+                <span class="badge">📝 Con Garantía</span>
+            </div>
+            <a href="https://wa.me/5493512832957?text=Hola!%20Quiero%20consultar%20por%20productos%20de%20Skyphones" class="cta-btn" target="_blank">Contactar por WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="productos" class="products">
+        <h2>Nuestro Catálogo</h2>
+        <div class="product-grid">
+            
+            <a href="celulares.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="icon">📲</div>
+                    <h3>Celulares</h3>
+                    <p>Equipos Apple usados seleccionados. Testeados y con garantía asegurada.</p>
+                </div>
+            </a>
+
+            <a href="fundas.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="icon">📱</div>
+                    <h3>Fundas</h3>
+                    <p>Máxima protección y diseño. Gran variedad de colores y materiales para todos los modelos.</p>
+                </div>
+            </a>
+
+            <a href="cargadores.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="icon">⚡</div>
+                    <h3>Cargadores</h3>
+                    <p>Fuentes y cables de carga rápida para que nunca te quedes sin batería. Calidad premium.</p>
+                </div>
+            </a>
+
+            <a href="accesorios.html" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="icon">🎧</div>
+                    <h3>Accesorios</h3>
+                    <p>Vidrios templados, auriculares, adaptadores y complementos para tu ecosistema.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="servicio" class="services">
+        <h2>Servicio Técnico Especializado</h2>
+        <div class="service-content">
+            <p>Dejamos tu equipo como nuevo. Reparaciones con repuestos de alta calidad y mano de obra especializada.</p>
+            <p><strong>Tranquilidad total:</strong> Todos nuestros trabajos y productos cuentan con garantía escrita 📝.</p>
+        </div>
+
+        <div class="repair-gallery">
+            <div class="gallery-img-box">
+                <img src="reparacion1.jpg" alt="Servicio Técnico Apple - Reparación 1">
+            </div>
+            <div class="gallery-img-box">
+                <img src="reparacion2.jpg" alt="Servicio Técnico Apple - Reparación 2">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Skyphones. Accesorios y soluciones. | Córdoba Capital - Malvinas Arg</p>
+    </footer>
+</body>
+</html>

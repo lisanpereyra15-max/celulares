@@ -1,0 +1,293 @@
+accesorios.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyphones - Catálogo de Accesorios</title>
+    
+    <style>
+        /* --- Variables de Color --- */
+        :root {
+            --azul-oscuro: #004785;
+            --azul-claro: #0066b2;
+            --blanco: #ffffff;
+            --fondo-gris: #f5f5f7;
+            --texto-oscuro: #1d1d1f;
+            --verde-wsp: #25D366;
+        }
+
+        /* --- Reseteo Básico --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-gris);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        /* --- Header y Menú Común --- */
+        header {
+            background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--azul-claro) 100%);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        nav.category-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav.category-menu a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav.category-menu a:hover {
+            color: var(--blanco);
+        }
+
+        /* Resalta en qué página estamos actualmente */
+        nav.category-menu a.active {
+            color: var(--blanco);
+            border-bottom: 2px solid var(--blanco);
+            font-weight: bold;
+        }
+
+        /* --- Título de la Sección --- */
+        .section-header {
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* --- Grilla de Productos --- */
+        .catalog {
+            padding: 40px 5% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #eee;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            margin-bottom: 20px;
+        }
+
+        .btn-buy {
+            background-color: var(--verde-wsp);
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #20b858;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #001a33;
+            color: var(--blanco);
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
+            nav.category-menu ul {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="lo.jpg" alt="Logo Skyphones">
+            </a>
+        </div>
+        <nav class="category-menu">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="celulares.html" class="active">Celulares</a></li>
+                <li><a href="fundas.html">Fundas</a></li>
+                <li><a href="cargadores.html">Cargadores</a></li>
+                <li><a href="accesorios.html" class="active">Accesorios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-header">
+        <h1>Accesorios Variados</h1>
+        <p>Complementos perfectos para tu ecosistema Apple 🎧</p>
+    </div>
+
+    <section class="catalog">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="vidrio-templado.jpg" alt="Vidrio Templado">
+            </div>
+            <div class="product-info">
+                <h3>Vidrio Templado 9D</h3>
+                <p>Máxima dureza y resistencia a rayones. Cubre toda la pantalla y bordes.</p>
+                <div class="price">$5.000</div>
+                <a href="https://wa.me/5493512832957?text=Hola!%20Vengo%20de%20la%20página%20web.%20Quiero%20comprar%20el%20Vidrio%20Templado%209D%20($5.000)" class="btn-buy" target="_blank">
+                    Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="airpods-pro.jpg" alt="Auriculares Bluetooth">
+            </div>
+            <div class="product-info">
+                <h3>Auriculares Bluetooth (Estilo AirPods Pro)</h3>
+                <p>Excelente calidad de sonido, cancelación de ruido activa y conexión automática.</p>
+                <div class="price">$45.000</div>
+                <a href="https://wa.me/5493512832957?text=Hola!%20Vengo%20de%20la%20página%20web.%20Quiero%20comprar%20los%20Auriculares%20Bluetooth%20($45.000)" class="btn-buy" target="_blank">
+                    Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="adaptador-audio.jpg" alt="Adaptador Lightning a Jack">
+            </div>
+            <div class="product-info">
+                <h3>Adaptador Lightning a Jack 3.5mm</h3>
+                <p>Ideal para conectar tus auriculares con cable tradicionales a tu iPhone.</p>
+                <div class="price">$8.500</div>
+                <a href="https://wa.me/5493512832957?text=Hola!%20Vengo%20de%20la%20página%20web.%20Quiero%20comprar%20el%20Adaptador%20Lightning%20a%20Jack%20($8.500)" class="btn-buy" target="_blank">
+                    Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="billetera-magsafe.jpg" alt="Billetera MagSafe">
+            </div>
+            <div class="product-info">
+                <h3>Billetera de Cuero MagSafe</h3>
+                <p>Llevá tus tarjetas de forma segura pegadas al dorso de tu teléfono. Múltiples colores.</p>
+                <div class="price">$16.000</div>
+                <a href="https://wa.me/5493512832957?text=Hola!%20Vengo%20de%20la%20página%20web.%20Quiero%20comprar%20la%20Billetera%20MagSafe%20($16.000)" class="btn-buy" target="_blank">
+                    Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Skyphones. Accesorios y soluciones. | Córdoba Capital - Malvinas Arg</p>
+    </footer>
+</body>
+</html>
